@@ -1,0 +1,92 @@
+<div class="row">
+  <!-- <div class="col-md-1">
+    <span></span>
+  </div> -->
+  <div class="col-lg-12" style="border:5px">
+    <div class="card card-block bg-light" style="text-align:center">
+      <h3>Crate Expenses</h3>
+    </div>
+
+    <div class="col col-lg-10 " style="text-align:center">
+      <div class="row">
+        <div class=" col col-lg-5 alert alert-info" style="text-align:center;margin: 20px 20px 0px 0px ">
+          <h5>Todays Date:</h5>
+          <h5>{{today | date:'fullDate'}}</h5>
+        </div>
+        <div *ngIf="selectedDate" class="col col-lg-5 alert alert-warning" style="text-align:center;margin: 20px 0px 0px 0px">
+          <h5>Selected Date:</h5>
+          <h5>{{selectedDate | date:'fullDate'}}</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-lg-12 " >
+      <div class="row">
+        <div class="col-lg-5">
+          <form novalidate #f="ngForm" (ngSubmit)="onSubmit()">
+            <label class="text-danger">*All fields are Mandatory.</label>
+            <div class="form-group">
+              <label for="selectdate">Select Expense Date:</label>
+              <input type="date" required class="form-control" id="selectdate" name="selectdate" ngModel (change)="SelectedDate($event)">
+            </div>
+            <div class="form-group">
+              <label for="catType">Select Expenses Type:</label>
+              <select class="form-control" name="catType" id="catType" (change)="selectName($event)" ngModel>
+                <option value="">-Select-</option>
+                <option *ngFor="let t of ExpenseTypesList " #expens [value]="t.ExpenseCategoryId" >{{t.ExpenseCategoryName}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="expCost">Enter Expense Amount:</label>
+              <input type="number" required class="form-control" id="expCost" name="expCost" ngModel>
+            </div>
+            <div class="form-group">
+              <label for="txtDesc">Enter Expense Description</label>
+              <textarea class="form-control rounded-0" id="txtDesc" name="txtDesc" rows="3" ngModel></textarea>
+            </div>
+            <hr/>
+            <button type="submit" class="btn btn-primary">Add Expense</button>&nbsp;&nbsp;
+            <!-- <button type="submit" class="btn btn-primary">Save Expense</button> -->
+            <br/>
+            <label class="alert alert-danger" *ngIf="formReq"> {{ formReq}}</label>
+            <!-- <pre>{{f.value | json}}</pre> -->
+          </form>
+        </div>
+        <div class="col-xs-1" style="height: 400px;margin-top: 15px;background-color: rgb(182, 175, 175)"><span>`</span></div>
+
+        <div  style="margin-top: 15px;margin-left: 5px">
+          <h4>Added Expense List</h4>
+          <hr/>
+          <div *ngIf="ExpneseData.length!=0">
+            <table  class="table fixed border">
+              <tr><th>Sr.No.</th><th> Date</th><th>Expense Type</th><th>Amount</th><th>Description</th><th>Delete</th></tr>
+              <tr *ngFor=" let exp of ExpneseData; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{exp.ExpenseDate | date:'shortDate'}}</td>
+                <td>{{exp.ExpenseCategoryName}}</td>
+                <td>{{exp.ExpenseCost}}</td>
+                <td style="width: 200px;height:50px;">{{exp.Comment}}</td>
+                <td><button style=" background:none; border:none;font-size:1em;color:none;" (click)="DeleteExpense(i)">
+                  <img src="../../assets/Images/d3.png" width="30" height="40"/>
+                </button></td>
+              </tr>
+              <tr><td></td><td></td><td style="text-align: right;">Total:</td><td colspan="2"><b>{{totalCost}}</b></td><td></td></tr>
+            </table>
+            <div style="text-align: center">
+                <button type="submit" class="btn btn-primary" (click)="SaveExpens()">Save Expense</button>
+            </div>
+          </div>
+         <p  *ngIf="ExpneseData.length==0" class="text-danger">**Expense Not yet Added !plz add new Expense</p>
+       
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- <div class="col-md-2">
+    <span></span>
+  </div> -->
+</div>

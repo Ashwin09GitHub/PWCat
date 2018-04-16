@@ -1,0 +1,9 @@
+
+.mydiv{
+    background-image: url('../../assets/Images/r4.jpg')
+}
+
+.trans{
+    background-color:transparent;
+    box-shadow: 2px 2px #888888;
+}

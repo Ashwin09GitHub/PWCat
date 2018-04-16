@@ -1,0 +1,54 @@
+<div class="row" style="background-image:url('../../assets/Images/b8.jpg')">
+  <div class="col-md-2">
+    <span></span>
+  </div>
+  <div class="col-md-8" style="background-color:transparent ;border-radius:30px; box-shadow: 10px 10px  #888888;margin-bottom: 30px ">
+    <br/>
+    <div class="alert alert-info" style="text-align:center;border-radius:30px;">
+      <strong><h5>Register</h5></strong>
+    </div>
+    <div >
+        <form novalidate   #f="ngForm" (ngSubmit)="onSubmit()">
+            <label class="text-danger">*All fields are Mandatory.</label>
+             
+          <div class="form-group">
+            <label for="email">Email address:</label>
+            <input  type="email" required class="form-control trans" id="email" name="email" ngModel>
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input  type="password" required class="form-control trans" id="pwd" name="Password" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="cnfpwd">Conform Password:</label>
+              <input type="password"  required class="form-control trans" id="cnfpwd" name="ConformPassword" ngModel>
+              <span *ngIf="pwdError" class="text-danger">{{pwdError}}</span>
+            </div>
+            <div class="form-group">
+                <label for="fname">Enter First Name</label>
+                <input type="text" required class="form-control trans" id="fanme" name="Fname" ngModel>
+              </div>
+              <div class="form-group">
+                  <label for="lname">Enter Last Name</label>
+                  <input type="email" required class="form-control trans" id="lname" name="Lname" ngModel> 
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Enter Mobile</label>
+                    <input type="text" required class="form-control trans" id="mobile" name="Mobile" ngModel>
+                  </div>
+            <hr/>
+          <div class="checkbox">
+            <label><input type="checkbox"> *I Agree T & C </label>
+          </div>
+          <button type="submit" class="btn btn-primary " style="margin: 0px 0px 15px 183px;height:52px;width: 150px;border-radius: 50px"  >Submit</button>&nbsp;&nbsp; <label  class="alert alert-danger" *ngIf="formReq"> {{ formReq}}</label> 
+          <!-- <pre>{{f.value | json}}</pre> -->
+        </form>
+      
+    </div>
+  
+  </div>
+  <div class="col-md-2">
+    <span></span>
+  </div>
+  <br/>
+</div>
